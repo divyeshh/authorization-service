@@ -7,9 +7,11 @@ phases:
     commands:
     - echo Logging in to Amazon ECR...
     - aws --version
-    - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+    - aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 274201610284.dkr.ecr.eu-west-2.amazonaws.com
+    - IMAGE_NAME=ecr-authorization-service
     - TAG="$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
-    - IMAGE_URI=${REPOSITORY_URI}:${TAG}
+    - IMAGE_URI=274201610284.dkr.ecr.eu-west-2.amazonaws.com/authorization-service:latest
+    - CONTAINER_NAME=authorization-service
   build:
     commands:
     - echo Build started on `date`
